@@ -1,0 +1,46 @@
+###
+GET http://localhost:8082/api/families
+
+<> 2025-04-11T001325.200.json
+<> 2025-04-11T000917.200.json
+<> 2025-04-11T000340.200.json
+
+###
+GET http://localhost:8082/api/families/1
+
+<> 2025-04-11T001547.200.json
+
+###
+GET http://localhost:8082/api/families/members/byFamilyName?
+    familyName=Stepanov
+
+<> 2025-04-11T001651.200.json
+
+###
+GET http://localhost:8082/api/persons/search?
+    familyId=2
+
+<> 2025-04-11T002223.200.json
+<> 2025-04-11T002204.404.json
+<> 2025-04-11T002001.404.json
+
+###
+GET http://localhost:8082/api/persons/family-members?
+    familyId=1&
+    familyName=Stepanov
+
+<> 2025-04-11T002122.200.json
+
+###
+GET http://localhost:8082/first/all
+
+###
+GET http://localhost:8082/first/allSurnames
+
+###
+GET http://localhost:8082/first/byId/3
+
+###
+GET http://localhost:8082/first/byNameAndSurname/daria/glupova
+
+###
