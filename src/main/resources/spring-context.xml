@@ -5,4 +5,11 @@
     <bean id="someClass" class="com.mytests.spring.foo.SomeClass">
 
     </bean>
+    <bean id="anotherClass" class="com.mytests.spring.foo.AnotherClass">
+        <constructor-arg ref="someClass"/>
+        <constructor-arg ref="newClass"/>
+    </bean>
+    <bean id="newClass" class="com.mytests.spring.foo.NewClass">
+
+    </bean>
 </beans>
