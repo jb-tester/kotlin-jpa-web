@@ -40,4 +40,7 @@ interface PersonRepository: CrudRepository<Person, Int> {
     // Alternative method using native SQL
     @Query(value = "SELECT p.* FROM person p JOIN family f ON p.family_id = f.id WHERE f.name = :familyName", nativeQuery = true)
     fun findByFamilyNameNative(@Param("familyName") familyName: String): List<Person>
+
+    fun findByIsMarried(isMarried: Boolean): MutableList<Person>
+
 }

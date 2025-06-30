@@ -75,7 +75,7 @@ class DataLoader {
         members: List<Triple<String, String, Family>>
     ) {
         members.forEach { (firstName, lastName, family) ->
-            val person = Person(firstName, lastName, family)
+            val person = Person(firstName, lastName, family, false )
             personRepository.save(person)
         }
     }

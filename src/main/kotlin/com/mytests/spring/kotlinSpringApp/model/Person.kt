@@ -23,6 +23,9 @@ class Person {
     @Column(name = "lastname")
     var surname: String? = null
 
+    @Column(name = "IS_MARRIED")
+    var isMarried: Boolean? = null
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "family_id")
     @JsonIgnore
@@ -30,21 +33,24 @@ class Person {
 
     constructor()
 
-    constructor(name: String?, surname: String?) {
+    constructor(name: String?, surname: String?, isMarried: Boolean?) {
         this.name = name
         this.surname = surname
+        this.isMarried = isMarried
     }
     
-    constructor(name: String?, surname: String?, family: Family?) {
+    constructor(name: String?, surname: String?, family: Family?, isMarried: Boolean?) {
         this.name = name
         this.surname = surname
         this.family = family
+        this.isMarried = isMarried
     }
 
     override fun toString(): String {
         return "id=" + id +
                 ": name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
+                ", isMarried=" + isMarried +
                 ", family='" + family?.name + '\''
     }
 }
