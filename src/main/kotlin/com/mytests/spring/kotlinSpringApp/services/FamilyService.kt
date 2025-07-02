@@ -9,6 +9,11 @@ import org.springframework.transaction.annotation.Transactional
 
 @Service
 class FamilyService(
+    // https://youtrack.jetbrains.com/issue/IDEA-370724
+    // false error is reported due to the fact that @repository-annotated
+    // repository is located outside of the scanned components packages
+    // it is detected via @EnableJpaRepositories however
+    // PersonRepository is not annotated with @Repository and thus is not error-highlighted
     private val familyRepository: FamilyRepository,
     private val personRepository: PersonRepository
 ) {
