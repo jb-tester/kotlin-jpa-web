@@ -12,11 +12,9 @@ import org.springframework.context.annotation.Profile
 @Configuration
 class DataLoader {
     
-    /**
-     * This bean is only activated when the "manual-data-load" profile is active
-     * By default, it's not used since we have data.sql for initial data loading
-     * To use this instead of data.sql, add spring.profiles.active=manual-data-load to application.properties
-     */
+//   This bean is only activated when the "manual-data-load" profile is active
+//   By default, it's not used since we have data.sql for initial data loading
+//   To use this instead of data.sql, add spring.profiles.active=manual-data-load to application.properties
     @Bean
     @Profile("manual-data-load")
     fun databaseLoader(
@@ -24,42 +22,41 @@ class DataLoader {
         personRepository: PersonRepository
     ): CommandLineRunner {
         return CommandLineRunner {
-            // Check if we already have data (from data.sql perhaps)
+            // Check if we already have data
             if (familyRepository.count() == 0L) {
                 println("Loading families and persons into database...")
                 
-                // Create families
-                val smithFamily = familyRepository.save(Family("Smith", "123 Main St, New York"))
-                val johnsonFamily = familyRepository.save(Family("Johnson", "456 Oak Ave, Chicago"))
-                val williamsFamily = familyRepository.save(Family("Williams", "789 Pine Rd, Los Angeles"))
-                val brownFamily = familyRepository.save(Family("Brown", "321 Cedar Ln, Houston"))
-                val davisFamily = familyRepository.save(Family("Davis", "654 Maple Dr, Philadelphia"))
+
+                val petrovFamily = familyRepository.save(Family("Petrov", "123 Lenina St, Moscow"))
+                val sidorovFamily = familyRepository.save(Family("Sidorov", "456 Lenina, StPetersburg"))
+                val kozlovFamily = familyRepository.save(Family("Kozlov", "789 Stroitelej, Moscow"))
+                val smirnovFamily = familyRepository.save(Family("Smirnov", "321 Stroitelej, StPetersburg"))
+                val pavlovFamily = familyRepository.save(Family("Pavlov", "654 Lenina, Novosibirsk"))
                 
-                // Create persons with family relationships
-                addFamilyMembers(personRepository, smithFamily, listOf(
-                    Triple("John", "Smith", smithFamily),
-                    Triple("Jane", "Smith", smithFamily),
-                    Triple("Michael", "Smith", smithFamily)
+                addFamilyMembers(personRepository, petrovFamily, listOf(
+                    Triple("Petr", "Petrov", petrovFamily),
+                    Triple("Elena", "Petrov", petrovFamily),
+                    Triple("Michael", "Petrov", petrovFamily)
                 ))
                 
-                addFamilyMembers(personRepository, johnsonFamily, listOf(
-                    Triple("Robert", "Johnson", johnsonFamily),
-                    Triple("Emily", "Johnson", johnsonFamily)
+                addFamilyMembers(personRepository, sidorovFamily, listOf(
+                    Triple("Sidor", "Sidorov", sidorovFamily),
+                    Triple("Ludmila", "Sidorov", sidorovFamily)
                 ))
                 
-                addFamilyMembers(personRepository, williamsFamily, listOf(
-                    Triple("David", "Williams", williamsFamily),
-                    Triple("Sarah", "Williams", williamsFamily)
+                addFamilyMembers(personRepository, kozlovFamily, listOf(
+                    Triple("Daniil", "Kozlov", kozlovFamily),
+                    Triple("Svetlana", "Kozlov", kozlovFamily)
                 ))
                 
-                addFamilyMembers(personRepository, brownFamily, listOf(
-                    Triple("James", "Brown", brownFamily),
-                    Triple("Emma", "Brown", brownFamily)
+                addFamilyMembers(personRepository, smirnovFamily, listOf(
+                    Triple("Evgenij", "Smirnov", smirnovFamily),
+                    Triple("Alla", "Smirnov", smirnovFamily)
                 ))
                 
-                addFamilyMembers(personRepository, davisFamily, listOf(
-                    Triple("Daniel", "Davis", davisFamily),
-                    Triple("Olivia", "Davis", davisFamily)
+                addFamilyMembers(personRepository, pavlovFamily, listOf(
+                    Triple("Pavel", "Pavlov", pavlovFamily),
+                    Triple("Olga", "Pavlov", pavlovFamily)
                 ))
                 
                 println("Database has been populated with sample data.")
