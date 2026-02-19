@@ -8,6 +8,7 @@ import org.springframework.boot.CommandLineRunner
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Profile
+import org.springframework.transaction.annotation.Transactional
 
 @Configuration
 class DataLoader {
@@ -17,13 +18,15 @@ class DataLoader {
 //   To use this instead of data.sql, add spring.profiles.active=manual-data-load to application.properties
     @Bean
     @Profile("manual-data-load")
+    @Transactional
     fun databaseLoader(
         familyRepository: FamilyRepository,
         personRepository: PersonRepository
     ): CommandLineRunner {
         return CommandLineRunner {
             // Check if we already have data
-            if (familyRepository.count() == 0L) {
+            val count = familyRepository.count()
+            if (count <= 5L) {
                 println("Loading families and persons into database...")
                 
 
@@ -59,9 +62,9 @@ class DataLoader {
                     Triple("Olga", "Pavlov", pavlovFamily)
                 ))
                 
-                println("Database has been populated with sample data.")
+                println("Database has been populated with sample data. The entries amount is "+familyRepository.count())
             } else {
-                println("Database already contains data. Skipping initialization.")
+                println("Database already contains data. " + count + " entries found. Skipping initialization.")
             }
         }
     }
