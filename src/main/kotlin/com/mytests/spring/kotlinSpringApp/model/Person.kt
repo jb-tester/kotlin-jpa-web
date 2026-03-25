@@ -14,7 +14,7 @@ NamedQuery(name = "Person.personByLastName", query = "select p.id, p.surname fro
 ])
 class Person {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Int? = null
 
     @Column(name = "firstname")

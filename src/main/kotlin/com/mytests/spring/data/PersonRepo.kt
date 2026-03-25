@@ -8,6 +8,6 @@ interface PersonRepo {
 
     fun findPersonByIdAndName(id: Int, name: String): Person?
     fun personByLastName(name: String): List<Person>
-    fun native2(name: String)
+    fun native2(name: String): List<Person>
 
 }

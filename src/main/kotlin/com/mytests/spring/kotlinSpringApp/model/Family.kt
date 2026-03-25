@@ -6,7 +6,7 @@ import jakarta.persistence.*
 @Table(name = "family")
 class Family {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Int? = null
 
     @Column(name = "name")

@@ -44,3 +44,6 @@ GET http://localhost:8082/first/byId/3
 GET http://localhost:8082/first/byNameAndSurname/daria/glupova
 
 ###
+GET http://localhost:8082/byIdAndName/3-ivan
+
+###
