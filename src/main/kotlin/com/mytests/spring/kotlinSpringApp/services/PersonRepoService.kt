@@ -12,7 +12,8 @@ class PersonRepoService(private val personRepo: PersonRepo) {
         return personRepo.findPersonByIdAndName(id, name)
     }
     fun findPeopleByLastname(lastname: String): List<Person>{
-        return personRepo.personByLastName(lastname)
+        val personByLastName = personRepo.personByLastName(lastname)
+        return personByLastName
     }
     fun native2(name: String): List<Person> {
         return personRepo.native2(name)

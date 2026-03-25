@@ -6,8 +6,8 @@ import jakarta.persistence.*
 @Entity
 @Table(name = "person")
 @NamedQueries(value = [
-NamedQuery(name = "Person.personByName", query = "select p.id, p.surname from Person p where p.name = ?1"),
-NamedQuery(name = "Person.personByLastName", query = "select p.id, p.surname from Person p where p.surname = ?1")])
+NamedQuery(name = "Person.personByName", query = "select p from Person p where p.name = ?1"),
+NamedQuery(name = "Person.personByLastName", query = "select p from Person p where p.surname = ?1")])
 @NamedNativeQueries( value = [
     NamedNativeQuery(name = "Person.native1", query = "select id, surname from person  where firstname = ?1"),
     NamedNativeQuery(name = "Person.native2", query = "select * from person  where lastname = ?1"),
